@@ -20,15 +20,30 @@ class RootFind:
 
             '''Store the result main word, root word, root word's parts of speech and the suffix'''
             index = -1
+            pos = ''
             with open('result.csv', 'w+', newline='') as csvfile:
                 rooted_word_result = csv.writer(csvfile)
                 rooted_word_result.writerow(['Word', 'Root', 'Parts of speech', 'Suffix'])
                 for data in input_data:
+                    if len(data) < 3:
+                        print(data + '1')
+                        rooted_word_result.writerow([data, data, rooted_dict.get(data), ''])
+                        continue
                     for i in range(len(data)):
-                        if data[:i] in rooted_dict:
-                            index = i
+                        for j in range(i, len(data)):
+                            sz = j - i
+                            if sz < 3:
+                                continue
+                            if data[i:j] in rooted_dict:
+                                pos = rooted_dict.get(data[i:j])
+                                index = j
+                                break
                     if index is not -1:
-                        rooted_word_result.writerow([data, data[:index], rooted_dict.get(data[:index]), data[index:]])
+                        rooted_word_result.writerow([data, data[:index], pos, data[index:]])
+                        index = -1
+                    else:
+                        print(str(index) + ' ' + data + '2 ')
+                        rooted_word_result.writerow([data, data, rooted_dict.get(data), ''])
                         index = -1
 
         except Exception as msg:

@@ -33,10 +33,10 @@ class SuffixFilter:
                             continue
                         if (word[:i] in rooted_dict) or (word[i:] in rooted_dict):
                             index = i
-                            print([word[:i], word[i:], rooted_dict.get(word[i:]), rooted_dict.get(word[:i])])
                     if index is -1:
                         rooted_word_result.writerow([pos_tag[j], word])
                         index = -1
+
                     j = j + 1
         # [data, data[:index], rooted_dict[data[:index]], data[index:], '']
 
