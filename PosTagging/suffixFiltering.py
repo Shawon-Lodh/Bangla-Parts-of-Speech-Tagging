@@ -24,17 +24,20 @@ class SuffixFilter:
             with open('suffix_filter_result.csv', 'w+', newline='') as csvfile:
                 rooted_word_result = csv.writer(csvfile)
                 rooted_word_result.writerow(['Parts of speech', 'Suffix'])
-                for j, word in enumerate(input_data):
-                    if len(data) <= 2:
+                j = 0
+                for word in input_data:
+                    if len(data) < 3:
                         continue
-                    for i in range(0, word.__len__(), 1):
-                        # িতাপ্রতিদ্বন্দ্বিতাহীন
+                    for i in range(len(data)):
+                        if i < 3:
+                            continue
                         if (word[:i] in rooted_dict) or (word[i:] in rooted_dict):
                             index = i
                             print([word[:i], word[i:], rooted_dict.get(word[i:]), rooted_dict.get(word[:i])])
                     if index is -1:
                         rooted_word_result.writerow([pos_tag[j], word])
                         index = -1
+                    j = j + 1
         # [data, data[:index], rooted_dict[data[:index]], data[index:], '']
 
         except Exception as msg:

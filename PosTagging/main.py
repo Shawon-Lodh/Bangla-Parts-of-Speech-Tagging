@@ -24,13 +24,12 @@ class RootFind:
                 rooted_word_result = csv.writer(csvfile)
                 rooted_word_result.writerow(['Word', 'Root', 'Parts of speech', 'Suffix'])
                 for data in input_data:
-                    for i in range(0, data.__len__(), 1):
+                    for i in range(len(data)):
                         if data[:i] in rooted_dict:
                             index = i
                     if index is not -1:
                         rooted_word_result.writerow([data, data[:index], rooted_dict.get(data[:index]), data[index:]])
                         index = -1
-        # [data, data[:index], rooted_dict[data[:index]], data[index:], '']
 
         except Exception as msg:
             print("From Root Find in rootFinding Method: " + str(msg))
