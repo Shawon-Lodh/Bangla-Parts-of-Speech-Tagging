@@ -2,22 +2,48 @@ import csv
 
 
 def main():
-    rooted_dict = {}
+    rooted_dict1 = {}
+    # rooted_dict2 = []
     input_data = open("input.txt", "r")
-
-    with open('reference_root_words.csv', 'r') as rooted_data:
-        rooted_data = csv.reader(rooted_data)
-        with open("new_reference_root_words.csv", "w+", newline='') as new_rooted_data:
-            new_rooted_data = csv.writer(new_rooted_data)
-            new_rooted_data.writerow(['SL.', 'Root', 'Parts of speech'])
-            for data in rooted_data:
-                if len(data[2]) >= 2:
-                    new_rooted_data.writerow(data)
+    sp = 'তাহীন'
+    # rooted_dict1[0] = 1
+    print(len(sp))
+    # for data in input_data:
+    #     word = data.split()
+    #     j = 0
+    #     print(word[0][(len(word[0]) - len(sp)) :])
+    #     print(len(word))
+    #     for i in range(0, len(word)):
+    #         print(word[i])
+    # with open("suffix.csv", "a") as csvfile:
+    #     new_rooted_data = csv.writer(csvfile)
+    #     new_rooted_data.writerow(['hello', 'world'])
+    #
+    #
+    # with open('suffix.csv', 'r') as rooted_data:
+    #     rooted_data = csv.reader(rooted_data)
+    #     for data in rooted_data:
+    #         rooted_dict.update({data[1]: data[0]})
+    # if rooted_dict.get('shihab') is not None:
+    #     print('No')
+    # else:
+    #     print(rooted_dict.get("world") + " " + rooted_dict.get("world"))
+    #     with open("new_reference_root_words.csv", "w+", newline='') as new_rooted_data:
+    #         new_rooted_data = csv.writer(new_rooted_data)
+    #         new_rooted_data.writerow(['SL.', 'Root', 'Parts of speech'])
+    #         for data in rooted_data:
+    #             if len(data[2]) >= 2:
+    #                 new_rooted_data.writerow(data)
                 # rooted_dict.update({data[2]: data[1]})
     # for data in rooted_dict:
     #     print(data[0])
-    # with open("reference_root_words.csv", 'r') as csvfile:
-    #     rooted_data = csv.reader(csvfile)
+    with open("reference_root_words.csv", 'r') as csvfile:
+        rooted_data = csv.reader(csvfile)
+        k = 0
+        for data in rooted_data:
+            k += 1
+        print(k)
+
     #
     #     with open('suffix.csv', 'w+', newline='') as csvfile:
     #         suffix_result = csv.writer(csvfile)

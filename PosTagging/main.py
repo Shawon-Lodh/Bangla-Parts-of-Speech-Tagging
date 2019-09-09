@@ -20,30 +20,31 @@ class RootFind:
 
             '''Store the result main word, root word, root word's parts of speech and the suffix'''
             index = -1
-            pos = ''
             with open('result.csv', 'w+', newline='') as csvfile:
                 rooted_word_result = csv.writer(csvfile)
-                rooted_word_result.writerow(['Word', 'Root', 'Parts of speech', 'Suffix'])
+                # rooted_word_result.writerow(['Word', 'Root', 'Parts of speech', 'Suffix'])
+                rooted_word_result.writerow(['Parts of speech', 'Suffix'])
                 for data in input_data:
+                    pos = ''
                     if len(data) < 3:
-                        print(data + '1')
-                        rooted_word_result.writerow([data, data, rooted_dict.get(data), ''])
+                        # rooted_word_result.writerow([data, data, rooted_dict.get(data)])
                         continue
                     for i in range(len(data)):
                         for j in range(i, len(data)):
                             sz = j - i
-                            if sz < 3:
+                            if sz < 4:
                                 continue
                             if data[i:j] in rooted_dict:
                                 pos = rooted_dict.get(data[i:j])
                                 index = j
                                 break
                     if index is not -1:
-                        rooted_word_result.writerow([data, data[:index], pos, data[index:]])
+                        # rooted_word_result.writerow([data, data[:index], pos, data[index:]])
+                        rooted_word_result.writerow([pos, data[index:]])
                         index = -1
-                    else:
-                        print(str(index) + ' ' + data + '2 ')
-                        rooted_word_result.writerow([data, data, rooted_dict.get(data), ''])
+                    elif pos is not '':
+                        rooted_word_result.writerow([pos, data[index:]])
+                        # rooted_word_result.writerow([data, data, pos, data[index:]])
                         index = -1
 
         except Exception as msg:
@@ -56,7 +57,7 @@ def main():
 
         '''rootFinding method need two file one is input file which contains row words and second file is reference rooted words file'''
 
-        root_finding.rootFinding("input", "new_reference_root_words")
+        root_finding.rootFinding("input", "reference_root_words")
     except Exception as msg:
         print(msg)
 
