@@ -9,14 +9,17 @@ class RootFind:
         try:
 
             rooted_dict = {}
+            input_data = []
+            suffix_dict = {}
 
             '''Here open the input word file. Here every word stored in one line'''
-            input_data = open(input + ".txt", 'r')
+            # input_data = open(input + ".txt", 'r')
             '''The reference or predefined root word and parts of speech store in dictionary (rooted_dict).'''
-            with open(predefined_root_word + '.csv', 'r') as rooted_data:
+            with open('reference_root_words.csv', 'r') as rooted_data:
                 rooted_data = csv.reader(rooted_data)
                 for data in rooted_data:
                     rooted_dict.update({data[2]: data[1]})
+                    input_data.append(data[2])
 
             '''Store the result main word, root word, root word's parts of speech and the suffix'''
             index = -1
@@ -29,23 +32,27 @@ class RootFind:
                     if len(data) < 3:
                         # rooted_word_result.writerow([data, data, rooted_dict.get(data)])
                         continue
+
+                    mx = 0
                     for i in range(len(data)):
                         for j in range(i, len(data)):
-                            sz = j - i
-                            if sz < 4:
+                            sz = len(data) - j
+                            if sz < 2:
                                 continue
-                            if data[i:j] in rooted_dict:
+                            if data[i:j] in rooted_dict and sz >= mx:
                                 pos = rooted_dict.get(data[i:j])
                                 index = j
-                                break
-                    if index is not -1:
+                                mx = sz
+                    if index is not -1 and (suffix_dict.get(data[index:]) is None):
                         # rooted_word_result.writerow([data, data[:index], pos, data[index:]])
                         rooted_word_result.writerow([pos, data[index:]])
+                        suffix_dict.update({data[index:]: pos})
                         index = -1
-                    elif pos is not '':
-                        rooted_word_result.writerow([pos, data[index:]])
-                        # rooted_word_result.writerow([data, data, pos, data[index:]])
-                        index = -1
+                    # elif (pos is not '') and (suffix_dict.get(data[index:]) is not None):
+                    #     rooted_word_result.writerow([pos, data[index:]])
+                    #     # rooted_word_result.writerow([data, data, pos, data[index:]])
+                    #     index = -1
+
 
         except Exception as msg:
             print("From Root Find in rootFinding Method: " + str(msg))

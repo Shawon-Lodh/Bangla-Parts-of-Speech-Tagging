@@ -32,21 +32,25 @@ class RootFind:
 
             with open('reference_root_words.csv', 'a', newline='') as csvfile:
                 final_result = csv.writer(csvfile)
-                flag = 0
                 for data in input_data:
                     word = data.split()
                     for i in range(len(word)):
                         pos = ''
                         if reference_root_dict.get(word[i]) is not None:
                             print(word[i] + " 1 " + reference_root_dict.get(word[i]))
+                            flag = 1
                             continue
                         else:
-                            for j in range(len(word[0])):
+                            flag = 0
+                            for j in range(len(word[i])):
                                 if suffix_dict.get(word[i][j:]) is not None:
-                                    print(sz, word[i] + " " + suffix_dict.get(word[i][j:]))
+                                    print(word[i] + " " + suffix_dict.get(word[i][j:]))
                                     final_result.writerow([sz, word[i], suffix_dict.get(word[i][j:])])
                                     sz += 1
+                                    flag = 1
                                     break
+                            if flag is 0:
+                                print(word[i] + "is unknown")
 
                     # for i in range(len(data)):
                     #     for j in range(i, len(data)):
