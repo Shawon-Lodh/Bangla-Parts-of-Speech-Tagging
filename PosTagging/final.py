@@ -20,6 +20,8 @@ class RootFind:
                         continue
                     else:
                         suffix_dict.update({data[1].strip(): data[0].strip()})
+                        k += 1
+            print(k)
 
             sz = -1
             with open('reference_root_words.csv', 'r') as rooted_data2:
