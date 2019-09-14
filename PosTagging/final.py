@@ -12,7 +12,6 @@ class RootFind:
             reference_root_dict = {}
             input_data = open("input.txt", "r")
 
-            k = 0
             with open('result.csv', 'r') as csvfile:
                 rooted_data1 = csv.reader(csvfile)
                 for data in rooted_data1:
@@ -20,8 +19,6 @@ class RootFind:
                         continue
                     else:
                         suffix_dict.update({data[1].strip(): data[0].strip()})
-                        k += 1
-            print(k)
 
             sz = -1
             with open('reference_root_words.csv', 'r') as rooted_data2:
@@ -37,7 +34,7 @@ class RootFind:
                     for i in range(len(word)):
                         pos = ''
                         if reference_root_dict.get(word[i]) is not None:
-                            print(word[i] + " 1 " + reference_root_dict.get(word[i]))
+                            print(word[i] + " " + reference_root_dict.get(word[i]))
                             flag = 1
                             continue
                         else:
