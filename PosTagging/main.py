@@ -40,7 +40,7 @@ class RootFind:
                             if sz < 2:
                                 continue
                             if data[i:j] in rooted_dict and sz >= mx:
-                                pos = rooted_dict.get(data[i:j])
+                                pos = rooted_dict.get(data)
                                 index = j
                                 mx = sz
                     if index is not -1 and (suffix_dict.get(data[index:]) is None) and pos is not '':
