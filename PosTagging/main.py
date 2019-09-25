@@ -26,7 +26,7 @@ class RootFind:
             with open('result.csv', 'w+', newline='') as csvfile:
                 rooted_word_result = csv.writer(csvfile)
                 # rooted_word_result.writerow(['Word', 'Root', 'Parts of speech', 'Suffix'])
-                rooted_word_result.writerow(['Parts of speech', 'Suffix'])
+                rooted_word_result.writerow(['Word', 'Parts of speech', 'Suffix'])
                 for data in input_data:
                     pos = ''
                     if len(data) < 3:
@@ -45,7 +45,7 @@ class RootFind:
                                 mx = sz
                     if index is not -1 and (suffix_dict.get(data[index:]) is None) and pos is not '':
                         # rooted_word_result.writerow([data, data[:index], pos, data[index:]])
-                        rooted_word_result.writerow([pos, data[index:]])
+                        rooted_word_result.writerow([data, pos, data[index:]])
                         suffix_dict.update({data[index:]:pos})
                         index = -1
                     # elif (pos is not '') and (suffix_dict.get(data[index:]) is not None):
