@@ -45,7 +45,7 @@ class RootFind:
                                 mx = sz
                     if index is not -1 and (suffix_dict.get(data[index:]) is None) and pos is not '':
                         # rooted_word_result.writerow([data, data[:index], pos, data[index:]])
-                        rooted_word_result.writerow([data, pos, data[index:]])
+                        rooted_word_result.writerow([data, pos, data[index + 1:]])
                         suffix_dict.update({data[index:]:pos})
                         index = -1
                     # elif (pos is not '') and (suffix_dict.get(data[index:]) is not None):
