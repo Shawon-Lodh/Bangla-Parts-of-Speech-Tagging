@@ -15,10 +15,10 @@ class RootFind:
             with open('result.csv', 'r') as csvfile:
                 rooted_data1 = csv.reader(csvfile)
                 for data in rooted_data1:
-                    if (data[1].strip() is "\n") or (data[0].strip() is "\n") or (data[1].strip() is "") or (data[0].strip() is "") or (suffix_dict.get(data[1].strip()) is not None):
+                    if (data[2].strip() is "\n") or (data[1].strip() is "\n") or (data[2].strip() is "") or (data[1].strip() is "") or (suffix_dict.get(data[2].strip()) is not None):
                         continue
                     else:
-                        suffix_dict.update({data[1].strip(): data[0].strip()})
+                        suffix_dict.update({data[2].strip(): data[1].strip()})
 
             sz = -1
             with open('reference_root_words.csv', 'r') as rooted_data2:
