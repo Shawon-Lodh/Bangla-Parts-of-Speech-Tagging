@@ -39,7 +39,7 @@ class RootFind:
                             sz = len(data) - j
                             if sz < 2:
                                 continue
-                            if data[i:j] in rooted_dict and sz >= 2 and sz <= mx:
+                            if data[i:j] in rooted_dict and sz <= mx:
                                 pos = rooted_dict.get(data)
                                 index = j
                                 mx = sz
